@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Heart, Plus } from "lucide-react";
-import Image from "next/image";
 
 interface ProductCardProps {
   id: string;
@@ -23,54 +22,42 @@ export default function ProductCard({
   isNew,
 }: ProductCardProps) {
   return (
-    <div className="group cursor-pointer flex flex-col gap-4">
+    <div className="group cursor-pointer flex flex-col gap-2.5 sm:gap-3 w-full">
       {/* Image Container */}
-      <div className="relative aspect-[3/4] overflow-hidden bg-neutral-100">
+      <div className="relative aspect-[3/4] overflow-hidden bg-neutral-100 rounded-sm">
         {isNew && (
-          <div className="absolute top-4 left-4 z-20 bg-white text-black text-[10px] tracking-widest uppercase px-3 py-1 font-medium">
+          <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-20 bg-white/95 text-black text-[9px] sm:text-[10px] tracking-widest uppercase px-2 py-0.5 sm:px-2.5 sm:py-1 font-semibold shadow-xs">
             New
           </div>
         )}
         
-        {/* Wishlist */}
-        <button className="absolute top-4 right-4 z-20 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-          <Heart size={20} className="text-black hover:fill-black transition-colors" />
+        {/* Wishlist Button */}
+        <button 
+          className="absolute top-2 right-2 sm:top-3 sm:right-3 z-20 p-1.5 rounded-full bg-white/80 sm:bg-transparent sm:opacity-0 group-hover:opacity-100 transition-all duration-200"
+          aria-label="Wishlist"
+        >
+          <Heart size={16} className="text-black hover:fill-black transition-colors" />
         </button>
 
-        {/* Images with Parallax */}
+        {/* Images */}
         <motion.div 
-          className="absolute -inset-4 bg-cover bg-top transition-opacity duration-700 ease-in-out group-hover:opacity-0 z-10"
+          className="absolute inset-0 bg-cover bg-top transition-transform duration-700 ease-out group-hover:scale-105 z-10"
           style={{ backgroundImage: `url(${image1})` }}
-          whileHover={{ y: -10 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        />
-        <motion.div 
-          className="absolute -inset-4 bg-cover bg-top transition-transform duration-1000 group-hover:scale-105 z-0"
-          style={{ backgroundImage: `url(${image2 || image1})` }}
-          whileHover={{ y: -10 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
         />
 
-        {/* Quick Add */}
-        <div className="absolute bottom-4 left-4 right-4 z-20 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-          <button className="w-full bg-white/90 backdrop-blur-md text-black py-3 text-xs tracking-widest uppercase font-medium hover:bg-black hover:text-white transition-colors flex items-center justify-center gap-2">
-            <Plus size={14} /> Quick Add
+        {/* Quick Add Button */}
+        <div className="absolute bottom-2 left-2 right-2 sm:bottom-3 sm:left-3 sm:right-3 z-20 sm:translate-y-3 sm:opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+          <button className="w-full bg-white/95 backdrop-blur-md text-black py-2 sm:py-2.5 text-[10px] sm:text-xs tracking-widest uppercase font-semibold hover:bg-black hover:text-white transition-colors flex items-center justify-center gap-1.5 shadow-sm rounded-xs">
+            <Plus size={13} /> Add
           </button>
         </div>
       </div>
 
       {/* Product Details */}
-      <div className="flex flex-col gap-1">
-        <span className="text-xs text-neutral-500 uppercase tracking-wider">{category}</span>
-        <div className="flex justify-between items-start">
-          <h3 className="text-sm font-medium text-black leading-snug">{name}</h3>
-          <span className="text-sm font-medium">{price}</span>
-        </div>
-        <div className="flex gap-1 mt-1">
-          <div className="w-3 h-3 rounded-full bg-black border border-neutral-200" />
-          <div className="w-3 h-3 rounded-full bg-neutral-200 border border-neutral-300" />
-          <div className="w-3 h-3 rounded-full bg-stone-500 border border-neutral-200" />
-        </div>
+      <div className="flex flex-col gap-0.5 sm:gap-1">
+        <span className="text-[10px] sm:text-xs text-neutral-400 uppercase tracking-wider font-medium truncate">{category}</span>
+        <h3 className="text-xs sm:text-sm font-medium text-black leading-snug line-clamp-1">{name}</h3>
+        <span className="text-xs sm:text-sm font-semibold text-neutral-900 mt-0.5">{price}</span>
       </div>
     </div>
   );

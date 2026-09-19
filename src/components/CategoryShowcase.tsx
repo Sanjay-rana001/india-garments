@@ -2,62 +2,59 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import Magnetic from "./Magnetic";
 
 export default function CategoryShowcase() {
   return (
-    <section className="py-24 bg-[#FAFAFA] max-w-[1600px] mx-auto px-6 md:px-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <section className="py-12 sm:py-20 bg-[#FAFAFA] max-w-[1600px] mx-auto px-4 sm:px-8 md:px-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         
         {/* Men's Category */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
+        <motion.a 
+          href="#men"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="group cursor-pointer relative overflow-hidden h-[300px] md:h-[400px] lg:h-[500px] flex items-end p-6 md:p-8 rounded-sm w-full"
+          transition={{ duration: 0.6 }}
+          className="group relative overflow-hidden h-[240px] sm:h-[360px] md:h-[460px] flex items-end p-5 sm:p-8 rounded-sm w-full block"
         >
           <div 
-            className="absolute inset-0 z-0 bg-cover bg-[center_20%] transition-transform duration-1000 group-hover:scale-105"
+            className="absolute inset-0 z-0 bg-cover bg-[center_20%] transition-transform duration-700 group-hover:scale-105"
             style={{ backgroundImage: "url('/images/mens_showcase_1789818667090.jpg')" }}
           />
-          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
           
           <div className="relative z-20 text-white w-full">
-            <h2 className="text-xl md:text-2xl font-serif mb-2">The Men's Edit</h2>
-            <div className="flex items-center justify-between w-full opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-              <Magnetic amount={0.5}>
-                <span className="text-xs tracking-widest uppercase font-medium inline-block">Explore Collection</span>
-              </Magnetic>
-              <ArrowRight size={16} />
+            <h2 className="text-lg sm:text-2xl font-serif mb-1 sm:mb-2 font-medium">The Men's Edit</h2>
+            <div className="flex items-center justify-between w-full text-xs tracking-widest uppercase font-medium">
+              <span className="inline-block border-b border-white/60 pb-0.5">Explore Collection</span>
+              <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
-        </motion.div>
+        </motion.a>
 
         {/* Women's Category */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
+        <motion.a 
+          href="#women"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="group cursor-pointer relative overflow-hidden h-[300px] md:h-[400px] lg:h-[500px] flex items-end p-6 md:p-8 rounded-sm w-full"
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="group relative overflow-hidden h-[240px] sm:h-[360px] md:h-[460px] flex items-end p-5 sm:p-8 rounded-sm w-full block"
         >
           <div 
-            className="absolute inset-0 z-0 bg-cover bg-top transition-transform duration-1000 group-hover:scale-105"
+            className="absolute inset-0 z-0 bg-cover bg-top transition-transform duration-700 group-hover:scale-105"
             style={{ backgroundImage: "url('/images/womens_showcase_1789818740040.jpg')" }}
           />
-          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
           
           <div className="relative z-20 text-white w-full">
-            <h2 className="text-xl md:text-2xl font-serif mb-2">The Women's Edit</h2>
-            <div className="flex items-center justify-between w-full opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-              <Magnetic amount={0.5}>
-                <span className="text-xs tracking-widest uppercase font-medium inline-block">Explore Collection</span>
-              </Magnetic>
-              <ArrowRight size={16} />
+            <h2 className="text-lg sm:text-2xl font-serif mb-1 sm:mb-2 font-medium">The Women's Edit</h2>
+            <div className="flex items-center justify-between w-full text-xs tracking-widest uppercase font-medium">
+              <span className="inline-block border-b border-white/60 pb-0.5">Explore Collection</span>
+              <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
-        </motion.div>
+        </motion.a>
 
       </div>
     </section>

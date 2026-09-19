@@ -4,45 +4,44 @@ import { motion } from "framer-motion";
 
 export default function EditorialSection() {
   return (
-    <section className="relative h-[60vh] md:h-[500px] w-full overflow-hidden flex items-center justify-center">
-      {/* Background with parallax effect via fixed attachment (pseudo-parallax) or standard cover */}
+    <section className="relative min-h-[400px] h-[55vh] md:h-[500px] w-full overflow-hidden flex items-center justify-center">
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-fixed transition-transform duration-1000"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-scroll sm:bg-fixed"
         style={{
           backgroundImage: "url('/images/editorial_indian_1789818759116.jpg')",
         }}
       />
-      <div className="absolute inset-0 bg-black/40 z-10" />
+      <div className="absolute inset-0 bg-black/50 z-10" />
 
       {/* Content */}
-      <div className="relative z-20 text-center px-4 max-w-3xl mx-auto flex flex-col items-center text-white">
+      <div className="relative z-20 text-center px-4 sm:px-6 max-w-3xl mx-auto flex flex-col items-center text-white">
         <motion.h2 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="text-4xl md:text-5xl font-serif mb-4 leading-tight"
+          transition={{ duration: 0.8 }}
+          className="text-2xl sm:text-4xl md:text-5xl font-serif mb-3 sm:mb-4 leading-tight font-bold tracking-wide"
         >
-          STYLE IS <br/> AN ATTITUDE.
+          STYLE IS AN ATTITUDE
         </motion.h2>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-base md:text-lg font-light mb-8"
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="text-xs sm:text-base font-light mb-6 sm:mb-8 text-white/90 tracking-wider"
         >
           Discover pieces designed to move with you.
         </motion.p>
         
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
         >
-          <a href="#" className="px-10 py-4 bg-white text-black font-medium tracking-widest uppercase text-sm hover:bg-black hover:text-white transition-colors duration-300">
+          <a href="#new-arrivals" className="px-6 py-3 sm:px-9 sm:py-3.5 bg-white text-black font-semibold tracking-widest uppercase text-xs hover:bg-neutral-200 transition-colors shadow-md">
             Explore The Edit
           </a>
         </motion.div>

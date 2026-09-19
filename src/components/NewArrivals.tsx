@@ -21,37 +21,27 @@ export default function NewArrivals({ products }: NewArrivalsProps) {
   const [activeTab, setActiveTab] = useState<"ALL" | "MEN" | "WOMEN">("ALL");
 
   return (
-    <section className="py-24 px-6 md:px-12 max-w-[1600px] mx-auto bg-[#FAFAFA]">
-      <div className="flex flex-col items-center mb-16 text-center">
-        <h2 className="text-4xl md:text-5xl font-serif mb-8 text-[#111111]">JUST DROPPED</h2>
+    <section id="new-arrivals" className="py-12 sm:py-20 px-4 sm:px-8 md:px-12 max-w-[1600px] mx-auto bg-[#FAFAFA]">
+      <div className="flex flex-col items-center mb-8 sm:mb-14 text-center">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif mb-4 sm:mb-6 text-[#111111] font-bold tracking-wide">JUST DROPPED</h2>
         
         {/* Tabs */}
-        <div className="flex gap-8 border-b border-neutral-200">
-          <button 
-            onClick={() => setActiveTab("ALL")}
-            className={`pb-2 text-sm tracking-widest font-medium uppercase transition-colors relative ${activeTab === "ALL" ? "text-black" : "text-neutral-400 hover:text-black"}`}
-          >
-            All
-            {activeTab === "ALL" && <span className="absolute bottom-[-1px] left-0 right-0 h-[1px] bg-black" />}
-          </button>
-          <button 
-            onClick={() => setActiveTab("MEN")}
-            className={`pb-2 text-sm tracking-widest font-medium uppercase transition-colors relative ${activeTab === "MEN" ? "text-black" : "text-neutral-400 hover:text-black"}`}
-          >
-            Men
-            {activeTab === "MEN" && <span className="absolute bottom-[-1px] left-0 right-0 h-[1px] bg-black" />}
-          </button>
-          <button 
-            onClick={() => setActiveTab("WOMEN")}
-            className={`pb-2 text-sm tracking-widest font-medium uppercase transition-colors relative ${activeTab === "WOMEN" ? "text-black" : "text-neutral-400 hover:text-black"}`}
-          >
-            Women
-            {activeTab === "WOMEN" && <span className="absolute bottom-[-1px] left-0 right-0 h-[1px] bg-black" />}
-          </button>
+        <div className="flex gap-6 sm:gap-10 border-b border-neutral-200 text-xs sm:text-sm">
+          {(["ALL", "MEN", "WOMEN"] as const).map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`pb-2.5 tracking-widest font-semibold uppercase transition-colors relative ${activeTab === tab ? "text-black" : "text-neutral-400 hover:text-black"}`}
+            >
+              {tab}
+              {activeTab === tab && <span className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-black" />}
+            </button>
+          ))}
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      {/* Grid: 2 columns on mobile, 3 on tablet, 4 on desktop */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
         {products.map((product) => (
           <ProductCard key={product.id} {...product} />
         ))}
