@@ -3,9 +3,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
+import Magnetic from "./Magnetic";
+
 export default function Newsletter() {
   return (
-    <section className="py-32 px-6 bg-[#D7C4A5] text-[#111111]">
+    <section className="py-24 px-6 bg-[#D7C4A5] text-[#111111]">
       <div className="max-w-2xl mx-auto text-center flex flex-col items-center">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
@@ -16,6 +18,7 @@ export default function Newsletter() {
         >
           STAY IN THE LOOP.
         </motion.h2>
+        
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,7 +34,7 @@ export default function Newsletter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="w-full max-w-md flex border-b border-[#111111] pb-2"
+          className="w-full max-w-md flex border-b border-[#111111] pb-2 group"
           onSubmit={(e) => e.preventDefault()}
         >
           <input 
@@ -40,9 +43,11 @@ export default function Newsletter() {
             className="bg-transparent border-none outline-none flex-1 placeholder:text-[#111111]/50 text-sm tracking-widest font-medium"
             required
           />
-          <button type="submit" className="flex items-center gap-2 text-sm tracking-widest font-bold uppercase hover:opacity-60 transition-opacity">
-            Join Us <ArrowRight size={16} />
-          </button>
+          <Magnetic amount={0.3}>
+            <button type="submit" className="flex items-center gap-2 text-sm tracking-widest font-bold uppercase hover:opacity-60 transition-transform group-hover:translate-x-2">
+              Join Us <ArrowRight size={16} />
+            </button>
+          </Magnetic>
         </motion.form>
       </div>
     </section>
