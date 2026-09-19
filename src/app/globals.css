@@ -1,6 +1,8 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme inline {
+:root {
   --color-background: #FAFAFA;
   --color-foreground: #111111;
   --color-accent: #D7C4A5; /* Soft beige */
@@ -8,11 +10,6 @@
   --color-warm-grey: #888888;
   --color-off-white: #F4F4F4;
 
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
-}
-
-:root {
   --background: #FAFAFA;
   --foreground: #111111;
 }
@@ -29,12 +26,12 @@ body {
   color: var(--foreground);
 }
 
-/* Custom smooth scrolling to be used with Lenis later or just natively */
+/* Custom smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Utilities for hiding scrollbar if needed */
+/* Utilities for hiding scrollbar */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
