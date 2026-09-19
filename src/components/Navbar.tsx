@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Search, User, Heart, ShoppingBag, Menu, X, ChevronRight } from "lucide-react";
 import { useWishlist } from "@/context/WishlistContext";
 
 const logoLetters = ["I", "N", "D", "I", "A"];
