@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Heart, Plus } from "lucide-react";
+import { useWishlist } from "@/context/WishlistContext";
 
 interface ProductCardProps {
   id: string;
@@ -14,13 +15,16 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({
+  id,
   name,
   category,
   price,
   image1,
-  image2,
   isNew,
 }: ProductCardProps) {
+  const { likedIds, toggleWishlist } = useWishlist();
+  const isLiked = likedIds.has(id);
+
   return (
     <div className="group cursor-pointer flex flex-col gap-2.5 sm:gap-3 w-full">
       {/* Image Container */}
@@ -31,15 +35,24 @@ export default function ProductCard({
           </div>
         )}
         
-        {/* Wishlist Button */}
-        <button 
-          className="absolute top-2 right-2 sm:top-3 sm:right-3 z-20 p-1.5 rounded-full bg-white/80 sm:bg-transparent sm:opacity-0 group-hover:opacity-100 transition-all duration-200"
-          aria-label="Wishlist"
+        {/* Wishlist Button with Flying Animation Trigger */}
+        <motion.button 
+          whileTap={{ scale: 0.75 }}
+          onClick={(e) => toggleWishlist(id, e)}
+          className={`absolute top-2 right-2 sm:top-3 sm:right-3 z-20 p-2 rounded-full transition-all duration-300 ${
+            isLiked 
+              ? "bg-white text-red-500 shadow-md opacity-100 scale-110" 
+              : "bg-white/80 sm:bg-transparent text-black sm:opacity-0 group-hover:opacity-100 hover:bg-white hover:shadow-md"
+          }`}
+          aria-label="Add to Wishlist"
         >
-          <Heart size={16} className="text-black hover:fill-black transition-colors" />
-        </button>
+          <Heart 
+            size={17} 
+            className={`transition-all duration-300 ${isLiked ? "fill-red-500 text-red-500" : "hover:text-red-500"}`} 
+          />
+        </motion.button>
 
-        {/* Images */}
+        {/* Product Image */}
         <motion.div 
           className="absolute inset-0 bg-cover bg-top transition-transform duration-700 ease-out group-hover:scale-105 z-10"
           style={{ backgroundImage: `url(${image1})` }}

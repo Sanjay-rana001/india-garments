@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, User, Heart, ShoppingBag, Menu, X, ChevronRight } from "lucide-react";
+import { useWishlist } from "@/context/WishlistContext";
 
 const logoLetters = ["I", "N", "D", "I", "A"];
 
@@ -30,6 +30,7 @@ const letterVariants = {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { wishlistCount } = useWishlist();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -98,23 +99,66 @@ export default function Navbar() {
             <a href="#about" className="hover:opacity-60 transition-opacity py-2">About</a>
           </nav>
 
-          {/* Icons */}
-          <div className="flex items-center gap-3 sm:gap-5">
-            <button className="p-2 hover:opacity-60 transition-opacity hidden sm:block" aria-label="Search">
-              <Search size={19} strokeWidth={1.5} />
-            </button>
-            <button className="p-2 hover:opacity-60 transition-opacity hidden sm:block" aria-label="Account">
-              <User size={19} strokeWidth={1.5} />
-            </button>
-            <button className="p-2 hover:opacity-60 transition-opacity hidden sm:block" aria-label="Wishlist">
-              <Heart size={19} strokeWidth={1.5} />
-            </button>
-            <button className="p-2 hover:opacity-60 transition-opacity relative" aria-label="Cart">
-              <ShoppingBag size={19} strokeWidth={1.5} />
-              <span className="absolute top-1 right-1 bg-black text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+          {/* Interactive Non-Robotic Action Icons */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            <motion.button 
+              whileHover={{ scale: 1.1, y: -1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors hidden sm:flex items-center justify-center cursor-pointer" 
+              aria-label="Search"
+            >
+              <Search size={19} strokeWidth={1.6} />
+            </motion.button>
+
+            <motion.button 
+              whileHover={{ scale: 1.1, y: -1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors hidden sm:flex items-center justify-center cursor-pointer" 
+              aria-label="Account"
+            >
+              <User size={19} strokeWidth={1.6} />
+            </motion.button>
+
+            {/* Wishlist Heart Icon with Flying Heart Target */}
+            <motion.button 
+              whileHover={{ scale: 1.15, y: -1 }}
+              whileTap={{ scale: 0.85 }}
+              animate={wishlistCount > 0 ? { scale: [1, 1.25, 1] } : {}}
+              transition={{ duration: 0.3 }}
+              className="p-2.5 rounded-full hover:bg-red-50/20 transition-colors relative flex items-center justify-center cursor-pointer group" 
+              aria-label="Wishlist"
+            >
+              <Heart 
+                size={19} 
+                strokeWidth={1.6} 
+                className={`transition-colors duration-300 ${wishlistCount > 0 ? "fill-red-500 text-red-500" : "group-hover:text-red-500"}`} 
+              />
+              <AnimatePresence>
+                {wishlistCount > 0 && (
+                  <motion.span 
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0 }}
+                    className="absolute -top-0.5 -right-0.5 bg-red-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-xs"
+                  >
+                    {wishlistCount}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </motion.button>
+
+            {/* Cart Icon */}
+            <motion.button 
+              whileHover={{ scale: 1.1, y: -1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors relative flex items-center justify-center cursor-pointer" 
+              aria-label="Cart"
+            >
+              <ShoppingBag size={19} strokeWidth={1.6} />
+              <span className="absolute -top-0.5 -right-0.5 bg-black text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
                 0
               </span>
-            </button>
+            </motion.button>
           </div>
         </div>
       </motion.header>
