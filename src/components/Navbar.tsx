@@ -31,11 +31,19 @@ export default function Navbar() {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 h-16 sm:h-20 flex items-center justify-between">
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden p-2 -ml-2 rounded-full active:bg-black/10 transition-colors"
+            className={`lg:hidden flex items-center justify-center p-2.5 -ml-2 rounded-full transition-all cursor-pointer ${
+              scrolled || mobileMenuOpen
+                ? "text-black hover:bg-neutral-100"
+                : "text-white hover:bg-white/20 bg-black/20 backdrop-blur-xs"
+            }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Menu"
           >
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileMenuOpen ? (
+              <X size={22} strokeWidth={2.2} className="block" />
+            ) : (
+              <Menu size={22} strokeWidth={2.2} className="block" />
+            )}
           </button>
 
           {/* Logo */}
