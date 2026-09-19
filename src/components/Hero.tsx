@@ -24,7 +24,7 @@ export default function Hero() {
         <motion.p 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 2.0 }}
           className="text-white/80 tracking-[0.25em] text-xs sm:text-sm uppercase mb-4 font-medium"
         >
           A Heritage of Elegance
@@ -34,7 +34,7 @@ export default function Hero() {
           <motion.h1 
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
-            transition={{ duration: 1, ease: [0.76, 0, 0.24, 1], delay: 0.5 }}
+            transition={{ duration: 1, ease: [0.76, 0, 0.24, 1], delay: 2.2 }}
             className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-white tracking-widest uppercase leading-tight font-bold"
           >
             INDIA GARMENTS
@@ -44,7 +44,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 2.5 }}
           className="flex flex-col sm:flex-row gap-3 sm:gap-5 w-full sm:w-auto px-4 max-w-xs sm:max-w-none"
         >
           <a href="#men" className="w-full sm:w-auto px-6 py-3.5 bg-white text-black font-semibold tracking-widest uppercase text-xs rounded-none active:bg-neutral-200 transition-colors shadow-lg">
