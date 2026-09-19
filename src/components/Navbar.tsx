@@ -4,6 +4,29 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, User, Heart, ShoppingBag, Menu, X, ChevronRight } from "lucide-react";
 
+const logoLetters = ["I", "N", "D", "I", "A"];
+
+const letterContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const letterVariants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -46,9 +69,24 @@ export default function Navbar() {
             )}
           </button>
 
-          {/* Logo */}
-          <a href="#" className="text-lg sm:text-2xl font-serif tracking-[0.25em] uppercase font-bold text-center lg:text-left flex-1 lg:flex-none">
-            INDIA
+          {/* Staggered Letter Animated Logo */}
+          <a href="#" className="text-lg sm:text-2xl font-serif tracking-[0.25em] uppercase font-bold flex-1 lg:flex-none flex items-center justify-center lg:justify-start">
+            <motion.span
+              variants={letterContainerVariants}
+              initial="hidden"
+              animate="visible"
+              className="inline-flex overflow-hidden py-1"
+            >
+              {logoLetters.map((char, index) => (
+                <motion.span
+                  key={index}
+                  variants={letterVariants}
+                  className="inline-block"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </motion.span>
           </a>
 
           {/* Desktop Navigation */}
